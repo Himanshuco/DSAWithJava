@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+//Array must be sorted
 int binarySearch(int arr[], int size, int target) {
     int low = 0;
     int high = size - 1;
