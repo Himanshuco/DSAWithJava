@@ -1,6 +1,3 @@
-Here's an example of how you can format a README file for a GitHub project with notes on the Array data structure using Markdown, which GitHub supports:
-
-```markdown
 # Notes on Arrays Data Structure
 
 ## Overview
