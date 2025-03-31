@@ -7,18 +7,28 @@ My DSA learning repository. It will be in JAVA language.(2025)
   3)Learn DSA.
   4)Practice , Practice and more.
 
-# Major Data Structure                         Algorithm
-  1) Array                                  Divide and conquer
-  2) Matrix/Grid                            Searching
-  3) Linked list                            Sorting
-  4) Stack                                  Bitwise Operations               
-  5) Queue                                  Greedy Algorithm
-  6) Hash                                   Recursion 
-  7) Tree                                   Mathematical Tools
-  8)Tries                                   Backtracking
-  9) Heap                                   Dynamic Programming
+# Major Data Structure                         
+  1) Array                                  
+  2) Matrix/Grid                            
+  3) Linked list                            
+  4) Stack                                                
+  5) Queue                                  
+  6) Hash                                   
+  7) Tree                                   
+  8)Tries                                   
+  9) Heap                                   
   10) Graph
 
+# Algorithm
+  1) Divide and conquer
+  2) Searching
+  3) Sorting
+  4) Bitwise Operations
+  5) Greedy Algorithm
+  6) Recursion
+  7) Mathematical Tools
+  8) Backtracking
+  9) Dynamic Programming
 
 # How to retain the concept and make it permanent in your mind ?
   1) Understand the Fundamentals.
