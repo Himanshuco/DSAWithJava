@@ -39,13 +39,13 @@ My DSA learning repository. It will be in JAVA language.(2025)
   5) Review and Revise
 
 # How to revise :
-  # Revison 1 
+  ## Revison 1 
       Solve Easy Question[10-15]
-  # Revision 2
+  ## Revision 2
       Solve Easy Question[8-10]
-  # Revision 3
+  ## Revision 3
       Solve Medium Question[10-12]
-  # Revision 4
+  ## Revision 4
       Solve Medium + Hard Question[10-12]
   Note: After this you can start the Company Specific Question  prepration.
  
