@@ -12,5 +12,7 @@ public class Totalwords {
         System.out.println("Total number of words are : "+ words.length);
 
     }
-    
+    //Edge cases:
+    //  1) Handling multiple spaces
+    //  2)Handling leading and traling space.
 }
