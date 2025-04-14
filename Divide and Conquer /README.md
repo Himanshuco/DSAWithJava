@@ -90,6 +90,88 @@ End Function
 
 ## Time-Complexity Framework for Divide and Conquer Problems 
 
+<ol>
+  <li>Let T(n) represents the time complexity of a Divide and Conquer algorithm.</li>
+  <li><b>If n is small :</b></li>
+    <ul>
+      <li>T(n)=f(n),where :</li>
+        <ol><li>f(n)=O(1) or Constant ( for base case)</li></ol>
+    </ul>
+  <li><b>If n is large :</b></li>
+    <ul>
+      <li>T(n)=2T(n/2)+g(n)</li>
+      <li>Here,</li>
+        <ol>
+          <li>2 = number of sub-problems</li>
+          <li>n/2 = size of each sub-problems</li>
+          <li>g(n) = time for dividing , combining , and small task</li>
+        </ol>
+    </ul>
+
+  <li><b>General form:</b></li>
+    <ol>
+      <li>T(n)=a.T(n/b)+g(n)</li>
+      <li>Here,</li>
+      <ul>
+        <li> a>=1 , b>1 </li>
+        <li>a = number of sub-problems</li>
+        <li>n/b = size of each sub-problems</li>
+        <li>g(n) = time for dividing , combining , and small task</li>
+      </ul>
+    </ol>
+    <li> Example <b>Symmetric :-</b></li>
+      <ul>
+        <li>T(n)=2T(n/2)+g(n)</li>
+        <li>T(n)=T(n/2)+g(n)</li>
+        <li>T(n)=4T(n/2)+g(n)</li>
+      </ul>
+    <li><b> Asymmetric :-</b></li>
+     <UL>
+       <LI>General Form:
+            T(n) = T(αn) + T((1-α)n) + g(n)
+            , where 0 < α < 1</LI>
+        <LI>Case 1:T(n) = T(n/3) + T(2n/3) + g(n)</LI>
+        <LI>Case 2:T(n) = T(n/2) + T(n/4) + g(n)</LI>
+     </UL>
+</ol>
+
+```mermaid
+graph TD
+    A["T(n): Time Complexity<br>of Divide & Conquer <br>Algorithms"]
+
+    A --> B["Symmetric Case"]
+    B --> C1["General Form:<br><br>T(n) = a · T(n/b) + g(n)"]
+    C1 --> D1["a ≥ 1, b > 1"]
+    C1 --> D2["a = number of sub-problems"]
+    C1 --> D3["n/b = size of each sub-problem"]
+    C1 --> D4["g(n) = time for dividing, combining, and small task"]
+
+    A --> E["Asymmetric Case"]
+    
+    E --> F1["General Form:<br><br>T(n) = <br>T(α·n) + T((1−α)·n) + g(n)<br>where 0 < α < 1"]
+    
+    F1 --> F2["Case 1:<br><br>T(n) = T(n/3) + T(2n/3) + g(n)"]
+    
+    F1 --> F3["Case 2:<br><br>T(n) = T(n/2) + T(n/4) + g(n)<br>where 0 < α < 1"]
+
+    %% Styling to increase box size
+    classDef wide fill:#f9cb9c,stroke:#333,stroke-width:2px,font-size:16px;
+    classDef symmetric fill:#c6e2ff,stroke:#333,stroke-width:2px,font-size:14px;
+    classDef header fill:#ffd966,stroke:#333,stroke-width:3px,font-size:18px;
+
+    class A header;
+    class B,C1,D1,D2,D3,D4 symmetric;
+    class E,F1,F2,F3 wide;
+
+
+```
+
+<hr/>
+
+<li><B>NOTE :- </B> In Divide and Conquer strategy, <b>Divide is mandatory</b> but combine is optional(Depends on application). </li> 
+  Exaple :-  Binary Search.
+
+
     
 
 
