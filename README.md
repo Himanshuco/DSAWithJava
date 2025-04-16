@@ -18,6 +18,7 @@ My DSA learning repository. It will be in JAVA language.(2025)
   8) Tries                                   
   9) Heap                                   
   10) Graph
+  11) Hashing
 
 # Algorithm
   1) Divide and conquer
