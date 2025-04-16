@@ -40,7 +40,7 @@ My DSA learning repository. It will be in JAVA language.(2025)
 
 # How to revise :
   ## Revison 1 
-      Solve Easy Question[10-15]
+      Solve Very Easy Question[10-15]
   ## Revision 2
       Solve Easy Question[8-10]
   ## Revision 3
