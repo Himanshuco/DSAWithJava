@@ -15,7 +15,7 @@ Operators are special symbols that perform operations on variables and values. J
 
 ---
 
-## ➕ Arithmetic Operators
+## Arithmetic Operators
 
 Used to perform basic mathematical operations:
 
@@ -29,7 +29,7 @@ Used to perform basic mathematical operations:
 
 ---
 
-## 🔁 Relational (Comparison) Operators
+## Relational (Comparison) Operators
 
 Used to compare two values:
 
@@ -44,7 +44,7 @@ Used to compare two values:
 
 ---
 
-## 🧠 Logical Operators
+## Logical Operators
 
 Used to combine multiple boolean expressions:
 
@@ -56,7 +56,7 @@ Used to combine multiple boolean expressions:
 
 ---
 
-## 📝 Assignment Operators
+## Assignment Operators
 
 Used to assign values to variables:
 
@@ -71,7 +71,7 @@ Used to assign values to variables:
 
 ---
 
-## ➕ Unary Operators
+## Unary Operators
 
 Operate on a single operand:
 
@@ -85,7 +85,7 @@ Operate on a single operand:
 
 ---
 
-## 🧮 Bitwise Operators
+## Bitwise Operators
 
 Perform operations on bits:
 
@@ -101,7 +101,7 @@ Perform operations on bits:
 
 
 
-## ❔ Ternary Operator
+## Ternary Operator
 
 Shortcut for `if-else`:
 
@@ -258,8 +258,6 @@ Is 'text' a String? true
 <hr>
 <hr>
 
-# Conditional Statements
-
 # 🔀 Conditional Statements in Java
 
 Conditional statements are used to control the flow of a program based on certain conditions.
@@ -278,7 +276,7 @@ Conditional statements are used to control the flow of a program based on certai
 
 
 
-## ❓ What are Conditional Statements?
+## What are Conditional Statements?
 
 Conditional statements execute a block of code only when a specific condition is `true`. They are fundamental for implementing decision-making in Java programs.
 
@@ -301,7 +299,7 @@ Java supports:
 
 ---
 
-## 1️⃣ if Statement
+## 1if Statement
 
 ```mermaid
 flowchart TD
@@ -312,7 +310,7 @@ flowchart TD
     D --> E
 ```
 
-### ✅ Definition
+### Definition
 
 Executes a block of code **only if** the condition evaluates to `true`.
 
