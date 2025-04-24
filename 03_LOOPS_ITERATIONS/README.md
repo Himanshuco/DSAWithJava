@@ -139,6 +139,7 @@ do {
 
 ## Loop Control Statements
 ### `break`
+Terminates the loop prematurely.
 
 ```mermaid
 flowchart TD
@@ -152,7 +153,7 @@ flowchart TD
 
 ```
 
-Terminates the loop prematurely.
+
 ```java
 for(int i = 0; i < 10; i++) {
     if(i == 5) break;
