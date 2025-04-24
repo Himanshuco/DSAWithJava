@@ -299,7 +299,7 @@ Java supports:
 
 ---
 
-## 1if Statement
+## 1 if Statement
 
 ```mermaid
 flowchart TD
@@ -322,3 +322,152 @@ int num = 10;
 if (num > 0) {
     System.out.println("Number is positive");
 }
+```
+<hr>
+
+## 2 if-else Statement
+
+```mermaid
+flowchart TD
+    A[Start] --> B{Condition?}
+    B -- Yes --> C[Execute if block]
+    B -- No --> D[Execute else block]
+    C --> E[End]
+    D --> E
+```
+
+### Definition
+Provides two paths: one if the condition is true, another if it's false.
+
+### 🧑‍💻 Example
+```Java
+int age = 16;
+
+if (age >= 18) {
+    System.out.println("You are eligible to vote.");
+} else {
+    System.out.println("You are not eligible to vote.");
+}
+```
+<hr>
+
+## 3 if-else-if Ladder
+
+```mermaid
+flowchart TD
+    A[Start] --> B{Condition 1?}
+    B -- Yes --> C[Execute Block 1]
+    B -- No --> D{Condition 2?}
+    D -- Yes --> E[Execute Block 2]
+    D -- No --> F{Condition 3?}
+    F -- Yes --> G[Execute Block 3]
+    F -- No --> H[Execute else Block]
+    
+    C --> Z[End]
+    E --> Z
+    G --> Z
+    H --> Z
+```
+
+### Definition
+Checks multiple conditions in sequence. Executes the first true condition.
+
+### 🧑‍💻 Example
+```Java
+int marks = 85;
+
+if (marks >= 90) {
+    System.out.println("Grade: A");
+} else if (marks >= 75) {
+    System.out.println("Grade: B");
+} else if (marks >= 60) {
+    System.out.println("Grade: C");
+} else {
+    System.out.println("Grade: F");
+}
+```
+
+## 4 switch Statement
+
+```mermaid
+flowchart TD
+    Start --> Switch[Check variable]
+    Switch --> CaseA[Case A]
+    Switch --> CaseB[Case B]
+    Switch --> CaseC[Case C]
+    Switch --> Default[Default Case]
+
+    CaseA --> EndA[Execute Block A]
+    CaseB --> EndB[Execute Block B]
+    CaseC --> EndC[Execute Block C]
+    Default --> EndD[Execute Default Block]
+
+    EndA --> End
+    EndB --> End
+    EndC --> End
+    EndD --> End
+
+
+```
+
+### Definition
+Used as a cleaner alternative to multiple if-else-if conditions, especially when checking the value of a single variable.
+
+### 🧑‍💻 Example
+```Java
+char grade = 'B';
+
+switch (grade) {
+    case 'A':
+        System.out.println("Excellent!");
+        break;
+    case 'B':
+        System.out.println("Well done!");
+        break;
+    case 'C':
+        System.out.println("Good job!");
+        break;
+    default:
+        System.out.println("Keep trying!");
+        break;
+}
+```
+
+## 5 Nested if Statement
+
+```mermaid
+flowchart TD
+    Start --> Check1{Condition 1?}
+    Check1 -- Yes --> Check2{Condition 2?}
+    Check1 -- No --> Else1[Execute else block of Condition 1]
+    Check2 -- Yes --> Block1[Execute block of Condition 2]
+    Check2 -- No --> Else2[Execute else block of Condition 2]
+
+    Block1 --> End
+    Else1 --> End
+    Else2 --> End
+
+```
+
+### Definition
+An if inside another if. Useful for checking multiple layers of conditions.
+
+### 🧑‍💻 Example
+```Java
+int number = 10;
+
+if (number > 0) {
+    if (number % 2 == 0) {
+        System.out.println("Positive even number");
+    } else {
+        System.out.println("Positive odd number");
+    }
+}
+
+```
+
+## Important Points
+<li>Always use braces {} to define blocks clearly, even for single-line statements.</li>
+<li>Conditions in if, else if, and while must evaluate to a boolean.</li>
+<li>Java supports switch for int, char, String, and enum types.</li>
+<li>Avoid deep nesting for better code readability.</li>
