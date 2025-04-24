@@ -169,4 +169,256 @@ graph TD
 <hr/>
 
 <li><B>NOTE :- </B> In Divide and Conquer strategy, <b>Divide is mandatory</b> but combine is optional(Depends on application). </li> 
-  Exaple :-  Binary Search.
+  Exaple :-  Binary Search , Quick sort
+
+</br>
+</hr>
+
+## Finding MaxMin
+<li>Procedure to find the maximum and minimum (simultaneously) in an arrway of size 'n'.</li>
+
+<p><strong>METHOD-1 : Non-Divide and Conquer Approach</strong></p>
+
+<b>1. Non Divide and Conquer Approach</b>
+```Algorithm
+  Algorithm MaxMin(A,n,max,min){
+    max <- min <- A[0];
+    for i <- 1 to n{
+      if(A[i]>max)
+        max <- A[i];
+      endif
+      if(A[i]<min)
+        min <- A[i];
+      endif
+}
+}
+```
+
+<li>Here, <b>metric:</b> Comparision </li>
+
+```mermaid
+graph TD
+    A[Comparison Types] --> B[Index Comparison]
+    A --> C[Element Comparison]
+
+    B --> D[Compares positions]
+    B --> E[Used in sorting algorithms]
+
+    C --> F[Compares element values]
+    C --> G[Used in searching algorithms]
+```
+
+<b>Total number of element comparison made in Non-DAndC (MaxMin()) = 2*(n-1)  (for all cases)</b>
+
+### Can we reduce the number of comparison ?
+```Algorithm
+  Algorithm MaxMin(A,n,max,min){
+    max <- min <- A[0];
+    for i <- 1 to n{
+      if(A[i]>max)
+        max <- A[i];
+      endif
+      else{
+        if(A[i]<min)
+          min <- A[i];
+        endif
+    }
+  }
+}
+```
+
+<li>Now, number of element comparison :</li>
+<ol>
+  <li><b>Best-case :-</b> (Increasing order) = (n-1) </li>
+  <li>Worst-case :-</b> (Decreasing order) = 2*(n-1)</li>
+  <li>Average-case :-</b></li>
+    <ul>
+      <li>Case :- On an average first comparison fails for 1/2 of given elements (n) </li>
+      <li>First Comparison + Second Comparison</li>
+      <li>(n-1)+n/2</li>
+      <li><b>Total comparison =</b> ((3n/2)-1)</li>
+    </ul>
+</ol>
+
+<table>
+    <tr>
+        <th></th>
+        <th>1st Comp.</th>
+        <th>2nd Comp.</th>
+        <th>Total</th>
+    </tr>
+    <tr>
+        <td>1) Best Case</td>
+        <td>(n-1)</td>
+        <td>0</td>
+        <td>(n-1)</td>
+    </tr>
+    <tr>
+        <td>2) Worst Case </td>
+        <td>(n-1)</td>
+        <td>(n-1)</td>
+        <td>2(n-1)</td>
+    </tr>
+    <tr>
+        <td>3) Avgerage Case</td>
+        <td>(n-1)</td>
+        <td>n/2</td>
+        <td>((3n/2) - 1)</td>
+    </tr>
+</table>
+<p><strong>Time: O(n)</strong></p>
+
+<p><strong>METHOD-2 : Divide and Conquer Approach</strong></p>
+
+```mermaid
+graph LR
+    %% Indexes (top row)
+    I1[0]:::index --> I2[1]:::index --> I3[2]:::index --> I4[3]:::index --> I5[4]:::index --> I6[5]:::index --> I7[6]:::index --> I8[7]:::index --> I9[8]:::index
+
+    %% Elements (bottom row)
+    E1[8]:::element --> E2[12]:::element --> E3[0]:::element --> E4[-6]:::element --> E5[15]:::element --> E6[20]:::element --> E7[3]:::element --> E8[64]:::element --> E9[9]:::element
+
+    %% Connecting index to element vertically
+    I1 -->| | E1
+    I2 -->| | E2
+    I3 -->| | E3
+    I4 -->| | E4
+    I5 -->| | E5
+    I6 -->| | E6
+    I7 -->| | E7
+    I8 -->| | E8
+    I9 -->| | E9
+
+    %% Styles for clarity
+    classDef index fill:#f9f,stroke:#333,stroke-width:1px;
+    classDef element fill:#bbf,stroke:#333,stroke-width:1px;
+
+
+```
+
+<B>Note:- (Tree structure description)</b>
+```mermaid
+graph TD
+    A["START INDEX , END INDEX , MAX VALUE , MIN VALUE"]
+```
+
+<b>Divide and Conquer Tree </b>
+```mermaid
+graph TD
+    A[(0,8,fmax,fmin)]
+    B[(0,4,gmax,gmin)]
+    C[(5,8,hmax,hmin)]
+    D[(0,2,imax,imin)]
+    E[(0,1,nmax,nmin)]
+    F[(2,2,omax,omin)]
+    G[(3,4,jmax,jmin)]
+    H[(5,6,kmax,kmin)]
+    I[(7,8,lmax,lmin)]
+
+    A --> B
+    A --> C
+
+    D --> E
+    D -->F
+
+    B --> D
+    B --> G
+
+    C --> H
+    C --> I
+```
+
+Solution :
+
+```mermaid
+graph TD
+    E[(0,1,nmax = 12 ,nmin = 8)] --> D[(0,2,imax = 10,imin = 0)]
+    F[(2,2,omax = 0,omin = 0)] --> D
+    D --> B[(0,4,gmax,gmin)]
+
+    G[(3,4,jmax = 15 ,jmin = -6)] --> B
+
+    H[(5,6,kmax = 20 ,kmin = 3 )] --> C[(5,8,hmax = 64 ,hmin = 3 )]
+    I[(7,8,lmax = 64 ,lmin = 9)] --> C
+
+    B --> A[(0,8,fmax = 64 ,fmin = -6)]
+    C --> A
+
+```
+
+MAX = 64 , MIN = -6
+
+<B>Algorithm</b>
+```Algorithm
+
+```
+
+<b> Performance Comparison </b>
+<li>Time Complexity : </li>
+
+```mermaid
+graph TD
+
+A[Performance Comparison]
+
+A1[Divide and Conquer]
+A2[Non Divide and Conquer]
+
+A --> A1
+A --> A2
+
+A1_1[Increasing Order]
+A1_2[Decreasing Order]
+A1_3[Random Case]
+
+A2_1[Increasing Order]
+A2_2[Decreasing Order]
+A2_3[Random Case]
+
+A1 --> A1_1
+A1 --> A1_2
+A1 --> A1_3
+
+A2 --> A2_1
+A2 --> A2_2
+A2 --> A2_3
+
+A1_1v["(3n/2 - 2)"]
+A1_2v["🔴 (3n/2 - 2)"]
+A1_3v["🔴 (3n/2 - 2)"]
+
+A2_1v["🔴 (n - 1)"]
+A2_2v["2(n - 1)"]
+A2_3v["(3n/2 - 1)"]
+
+A1_1 --> A1_1v
+A1_2 --> A1_2v
+A1_3 --> A1_3v
+
+A2_1 --> A2_1v
+A2_2 --> A2_2v
+A2_3 --> A2_3v
+
+
+```
+<li>Space Complexity : </li>
+
+
+```mermaid
+graph TD
+
+S[Space Complexity]
+
+S1[Non Divide & Conquer]
+S2[Divide & Conquer]
+
+S --> S1
+S --> S2
+
+S1v["O(1)"]
+S2v[" O(log n)"]
+
+S1 --> S1v
+S2 --> S2v
+```
+
