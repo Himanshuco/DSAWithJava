@@ -1,4 +1,4 @@
-# Java Pattern Printing - Notes, Tricks & Tips
+# Java Pattern Printing
 
 Pattern printing in Java is a common way to improve logical thinking and problem-solving skills. 
 
