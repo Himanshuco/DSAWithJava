@@ -1,5 +1,3 @@
-package DSA.DSAWithJava.00_BRUTE_FORCE;
-
 public class MaxMin { 
     //Brute Force
     public static void MaxMinB1(int arr[], int max , int min ){

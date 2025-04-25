@@ -1,5 +1,3 @@
-package DSA.DSAWithJava.01_VARIABLE_DATATYPE;
-
 import java.util.*;
 
 public class Calculator {
