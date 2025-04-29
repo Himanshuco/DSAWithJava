@@ -1,5 +1,5 @@
 # Greedy Algorithm
-A greedy algorithm solves <b>optimization probelm</b> by making the best choice at eah step (locally optimal ) hoping that :
+A greedy algorithm solves <b>optimization probelm</b> by making the best choice at eah step (locally optimal ) hoping that :</br>
 ---> "Local optimum = Global Optimum"
 
 ## Pros 
