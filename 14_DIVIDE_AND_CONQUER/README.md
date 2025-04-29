@@ -174,7 +174,7 @@ graph TD
 </br>
 </hr>
 
-## Finding MaxMin
+## 1. Finding MaxMin
 <li>Procedure to find the maximum and minimum (simultaneously) in an arrway of size 'n'.</li>
 
 <p><strong>METHOD-1 : Non-Divide and Conquer Approach</strong></p>
@@ -422,3 +422,169 @@ S1 --> S1v
 S2 --> S2v
 ```
 
+<hr/>
+
+## 2. Binary Search
+
+<li>The primary requirement is that the list of n-elements must be in sorted order.</li>
+<li>mid = [(lowindex+highindex)/2]</li>
+
+### Example 
+  A <1 , 2 , 3 , 4 , 5 , 6 , 7>   n=7 , mid=4.<br/>
+  Let key = x ---> Compare x with each element</br>
+
+
+```mermaid
+graph TD
+    A4["4"]
+    A2["2"]
+    A6["6"]
+    A1["1"]
+    A3["3"]
+    A5["5"]
+    A7["7"]
+
+    A4 -- "x < 4" --> A2
+    A4 -- "x > 4" --> A6
+    A2 --> A1
+    A2 --> A3
+    A6 --> A5
+    A6 --> A7
+
+```
+
+<li>No of comparisons (worst case) or unsuccessful search will lie on <b> leaf value </b> = h (height of complete binary tree) = O(log n) </li>
+
+### How divide and conquer is applied ? 
+
+```mermaid
+graph TD
+    Root["I&lt;n, a1, a2, ..., an, x&gt; (n &gt; 1)"]
+
+    Root -- "x < ak" --> Left["I1&lt;k-1, a1, ..., a(k-1), x&gt;"]
+    Root -- "x = ak" --> Mid["I2&lt;1, ak, x&gt;"]
+    Root -- "x > ak" --> Right["I3&lt;n-k, a(k+1), ..., an, x&gt;"]
+
+    Left -- "x < ai" --> LL["I'&lt;..., ..., ..., x&gt;"]
+    Left -- "x = ai" --> LM["I'&lt;1, ai, x&gt;"]
+    Left -- "x > ai" --> LR["I'&lt;..., ..., ..., x&gt;"]
+
+    Right -- "x < aj" --> RL["I'&lt;..., ..., ..., x&gt;"]
+    Right -- "x = aj" --> RM["I'&lt;1, aj, x&gt;"]
+    Right -- "x > aj" --> RR["I'&lt;..., ..., ..., x&gt;"]
+
+    LL --> End1["...until 1 element left"]
+    LM --> End1
+    LR --> End1
+    RL --> End2["...until 1 element left"]
+    RM --> End2
+    RR --> End2
+
+```
+
+
+
+### Recursive Steps Explained 
+
+1. **if `x < aₖ`** (left subtree):
+   - The value `x` is smaller than the current pivot `aₖ`, so the search continues in the **left half** of the array: `I₁<k-1, a₁, ..., aₖ₋₁, x>`.
+   - This process continues recursively until only **one element remains**.
+
+2. **if `x = aₖ`** (middle subtree):
+   - The value `x` matches the current pivot `aₖ`, so the search is **successful** at this point.
+   - The interval becomes `I₂<1, aₖ, x>`, indicating that `x` is found at position `k`.
+
+3. **if `x > aₖ`** (right subtree):
+   - The value `x` is larger than the current pivot `aₖ`, so the search continues in the **right half** of the array: `I₃<n-k, aₖ₊₁, ..., aₙ, x>`.
+   - The right half is recursively split until only **one element remains**.
+
+### Diagram Breakdown 
+
+<b> Root Node </b>
+
+- The root node represents the interval `I<n, a₁, a₂, ..., aₙ, x>` (with `n > 1`). It recursively splits into three branches based on whether `x` is smaller, equal, or larger than `aₖ`.
+
+<b> Left Branch  </b>
+
+- **If `x < aₖ`**, the interval is reduced to the left part (`I₁`), and the process repeats recursively.
+
+<b> Middle Branch </b>
+
+- **If `x = aₖ`**, the value `x` is found.
+
+<b> Right Branch </b>
+
+- **If `x > aₖ`**, the interval is reduced to the right part (`I₃`), and the process continues recursively.
+
+
+
+### Final Step 
+
+When the recursion reaches the base case (only **one element left** in the interval), the process ends, and `x` is found or determined to be missing.
+
+
+
+### Recursion Flow 
+
+1. **if `x < aₖ`**, go left.
+2. **if `x = aₖ`**, the value is found.
+3. **if `x > aₖ`**, go right.
+4. Repeat until only **1 element** is left.
+
+<hr>
+
+<ul>
+  <li><b>Implementation of Binary Search :</b></li>
+  <ol>
+    <li>Iterative Binary Search</li>
+    <li>Recursive Binary Search</li>
+  </ol>
+</ul>
+
+```Algorithm
+
+```
+
+### Performance 
+Consider an array(sorted) with 'n' elements, then if binary search is applied, then D&C recurrence arising is________
+<br/>
+
+<b>Time Complexity </b> </br>
+T(n) = c  , n=1 <br/>
+T(n) = a + T(n) , n>1 <br/>
+T(n)  = T(n/2)+ a  <br/>
+      = O(log n)
+
+Note : c,a are representing constant time.
+
+```mermaid
+graph TD
+    Root["I&lt;n, a₁, a₂, ..., aₙ, x&gt; (n &gt; 1)"]
+
+    Root -- "x < aₖ" --> Left["I₁&lt;k-1, a₁, ..., aₖ₋₁, x&gt;"]
+    Root -- "x = aₖ" --> Mid["I₂&lt;1, aₖ, x&gt;"]
+    Root -- "x > aₖ" --> Right["I₃&lt;n-k, aₖ₊₁, ..., aₙ, x&gt;"]
+
+    Left --> LeftComp["T(n/2)"]
+    Mid --> MidComp["a"]
+    Right --> RightComp["T(n/2)"]
+
+```
+
+<B>Space Complexity </b></br>
+  O(logn) # Recursive stack
+
+**NOTE :** 
+<LI>At every level we are solving 2 out of 3 subprobelms.</LI>
+<li>There is no combine/conquer option.</li>
+
+## 3. Merge Sort (Principle of merging)
+
+
+
+
+
+<hr/>
+
+## 4. Quick Sort
+  
