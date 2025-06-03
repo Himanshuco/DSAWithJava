@@ -2,315 +2,75 @@
 
 ---
 
-## 📌 Criteria for Analysis
+## Classification of Sorting Techniques :
+  ### 1) Internal sorting vs External sorting
 
-| Criteria               | Description                                                                 |
-|------------------------|-----------------------------------------------------------------------------|
-| Comparisons            | Number of element comparisons                                               |
-| Swaps                  | Number of value exchanges                                                   |
-| Adaptive               | Optimized for nearly sorted inputs                                          |
-| Stable                 | Preserves relative order of equal elements                                  |
-| Extra Memory Required  | External space used                                                          |
+| **Category**           | **Internal Sorting**                                                   | **External Sorting**                                                       |
+|------------------------|-------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| **Definition**          | Sorting techniques that handle data that can fit into the computer's RAM. | Sorting techniques used when the data cannot fit into the computer's RAM and must be read from external storage. |
+| **Memory**              | Data is entirely in the internal memory (RAM).                          | Data is stored externally (e.g., on hard drives or cloud storage).          |
+| **Speed**               | Typically faster as all data is accessed from RAM.                      | Slower due to data being accessed from external storage, which is slower than RAM. |
+| **Example Algorithms**  | - Quick Sort<br>- Merge Sort<br>- Bubble Sort<br>- Insertion Sort<br>- Selection Sort | - External Merge Sort<br>- External Quick Sort |
+| **Usage**               | Used for smaller datasets that fit in the main memory.                  | Used for large datasets, such as databases and big data applications. |
 
----
+  ### 2) Comparison-based vs Non-comparison-based Sorting
 
-## 1️⃣ Bubble Sort
+| **Category**                   | **Comparison-based Sorting**                                         | **Non-comparison-based Sorting**                                            |
+|---------------------------------|----------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| **Definition**                  | Sorting algorithms that compare elements to determine their order.   | Sorting algorithms that do not rely on element comparisons.                  |
+| **Key Characteristics**         | - Elements are compared with each other to determine their relative order.<br>- Usually have a time complexity of at least O(n log n) in the average case. | - Do not compare elements directly.<br>- Utilize properties of the data (like range or digit position) to determine the order. |
+| **Time Complexity**             | - Best: O(n log n)<br>- Average: O(n log n)<br>- Worst: O(n²) (for algorithms like Bubble Sort) | - Best, Average, and Worst: O(n) (under certain conditions)                |
+| **Examples**                    | - Quick Sort<br>- Merge Sort<br>- Heap Sort<br>- Bubble Sort<br>- Insertion Sort | - Counting Sort<br>- Radix Sort<br>- Bucket Sort                           |
+| **Use Cases**                   | - Suitable for general-purpose sorting of data.<br>- Works well for arbitrary data types. | - Used when the range of possible values is known and limited, or the data is numerical or categorical. |
+| **Limitations**                 | - Often slower on larger datasets, particularly with algorithms like Bubble Sort.<br>- May require additional memory (e.g., Merge Sort). | - Limited to specific use cases where data characteristics are known and limited.<br>- May not work well with non-numeric data. |
 
-**Idea**: Repeatedly swap adjacent elements if they are out of order. The largest elements "bubble" to the top.
 
-```java
-void bubbleSort(int[] A) {
-    int n = A.length;
-    for (int i = 0; i < n - 1; i++) {
-        boolean flag = false;
-        for (int j = 0; j < n - 1 - i; j++) {
-            if (A[j] > A[j + 1]) {
-                int temp = A[j];
-                A[j] = A[j + 1];
-                A[j + 1] = temp;
-                flag = true;
-            }
-        }
-        if (!flag) break;
-    }
-}
-```
+  ### 3) Recursive vs Iterative Approaches
 
-### 🔍 Explanation
-- Passes: `n - 1`
-- Comparisons per pass: `n - i - 1`
-- Total comparisons: `1 + 2 + 3 + ... + (n - 1) = n(n - 1)/2`
-- Swaps: Same as comparisons in worst case
-- Time Complexity: Worst O(n²), Best O(n)
-- **Stable**: ✅
-- **Adaptive**: ✅ (stops early if no swap)
+| **Category**                   | **Recursive Approach**                                                 | **Iterative Approach**                                                    |
+|---------------------------------|-------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| **Definition**                  | Sorting algorithms that use function calls to repeat the sorting steps on smaller subproblems. | Sorting algorithms that use loops to repeat the sorting steps until the problem is solved. |
+| **Key Characteristics**         | - Typically easier to implement.<br>- Breaks the problem into smaller subproblems.<br>- Makes use of the call stack to keep track of subproblems. | - Often more memory efficient as they do not require additional function calls or a call stack.<br>- Typically uses loops for repetition. |
+| **Memory Usage**                | - Uses more memory due to the function call stack (especially for deep recursion).<br>- Can lead to stack overflow for very deep recursion (e.g., with large datasets). | - Uses less memory, as it does not require additional space for function calls.<br>- More efficient in terms of space. |
+| **Time Complexity**             | - Same time complexity as the iterative approach, depending on the algorithm (e.g., Quick Sort, Merge Sort).<br>- Can be slower due to overhead of function calls. | - Same time complexity as recursive algorithms, but can be more efficient due to reduced overhead. |
+| **Examples**                    | - Recursive Quick Sort<br>- Recursive Merge Sort<br>- Recursive Binary Search | - Iterative Quick Sort<br>- Iterative Merge Sort<br>- Iterative Binary Search |
+| **Ease of Implementation**      | - Easier to implement and understand for certain problems (e.g., Divide and Conquer algorithms).<br>- Cleaner and more elegant code for problems that naturally lend themselves to recursion. | - May require more complex code for problems that are easier to solve recursively.<br>- Requires explicit management of the loop structure. |
+| **Use Cases**                   | - Ideal for problems that have a clear recursive structure, such as tree traversal, divide-and-conquer algorithms, or problems that naturally divide into smaller subproblems. | - Ideal for problems where repeated steps can be solved efficiently with loops, and where recursion might cause overhead or stack overflow issues. |
+| **Limitations**                 | - Can lead to stack overflow for large data or deep recursion levels.<br>- May not be as time-efficient due to function call overhead. | - Some problems that are naturally recursive may be more complex to implement iteratively.<br>- Less intuitive for problems with recursive structure. |
 
-### 💡 Properties
-- Performs selected number of passes ⇒ can find largest `k` elements in `k` passes
-- Called "bubble" sort because smaller values rise like bubbles
----
 
-## 2️⃣ Insertion Sort
+### 4) In-Place Sorting vs Not In-Place Sorting
 
-**Idea**: Insert each element into its correct position in the sorted part.
+| **Category**                   | **In-Place Sorting**                                                   | **Not In-Place Sorting**                                                   |
+|---------------------------------|-------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| **Definition**                  | Sorting algorithms that do not require additional memory or space outside of the input data structure. | Sorting algorithms that require additional memory or space beyond the input data structure. |
+| **Memory Usage**                | - Uses a constant amount of extra space (i.e., O(1) space complexity).<br>- The input data is rearranged within its own memory space. | - Requires extra space, typically proportional to the size of the input (e.g., O(n) space complexity). |
+| **Space Complexity**            | O(1) (constant space)                                                  | O(n) or more (depends on the algorithm and data structure used).             |
+| **Examples**                    | - Quick Sort<br>- Merge Sort (when done in-place)<br>- Heap Sort<br>- Insertion Sort | - Merge Sort (non in-place version)<br>- Radix Sort<br>- Counting Sort |
+| **Efficiency**                  | - More memory efficient as it doesn’t require extra storage.           | - Requires extra space, but can be more efficient for certain types of data. |
+| **Algorithm Stability**         | - In-place algorithms may or may not be stable.<br>- Stability means maintaining the relative order of equal elements. | - Not in-place algorithms like Merge Sort (non-in-place) are typically stable. |
+| **Use Cases**                   | - Suitable when memory is limited and extra space is expensive.<br>- Often used in environments with constrained memory resources (e.g., embedded systems). | - Used when the input data structure can be duplicated or when the algorithm’s efficiency benefits outweigh memory cost. |
+| **Limitations**                 | - Can sometimes be less efficient if extra space could be utilized to improve performance (e.g., Merge Sort). | - Extra space usage can make it inefficient for large datasets or memory-constrained environments. |
 
-```java
-void insertionSort(int[] A) {
-    for (int i = 1; i < A.length; i++) {
-        int temp = A[i];
-        int j = i - 1;
-        while (j >= 0 && A[j] > temp) {
-            A[j + 1] = A[j];
-            j--;
-        }
-        A[j + 1] = temp;
-    }
-}
-```
 
-### 🔍 Explanation
-- Assumes the first element is sorted
-- Passes: `n - 1`
-- Worst Comparisons: `n(n - 1)/2`
-- Best Comparisons: `n - 1`
-- Swaps: Equal to shifts performed
-- **Stable**: ✅
-- **Adaptive**: ✅
+### 5) Stable vs Unstable Sorting Algorithms
 
-### 💡 Properties
-- Efficient for small datasets
-- Used in linked lists
+| **Category**                   | **Stable Sorting**                                                     | **Unstable Sorting**                                                     |
+|---------------------------------|-------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| **Definition**                  | Sorting algorithms that maintain the relative order of records with equal keys (values). | Sorting algorithms that do **not** guarantee the relative order of records with equal keys. |
+| **Key Characteristics**         | - Equal elements retain their relative order after sorting.<br>- Stability is important when the data has multiple sorting criteria. | - Equal elements may have their relative order changed during sorting.<br>- Can be more efficient in certain cases. |
+| **Examples**                    | - Merge Sort<br>- Bubble Sort<br>- Insertion Sort<br>- Tim Sort<br>- **Stable** version of Quick Sort | - Quick Sort<br>- Heap Sort<br>- Selection Sort<br>- Shell Sort |
+| **Time Complexity**             | Same as their unstable counterparts, depending on the algorithm (e.g., O(n log n) for Merge Sort). | Same as stable counterparts, depending on the algorithm (e.g., O(n log n) for Quick Sort). |
+| **Use Cases**                   | - Useful when sorting by multiple criteria (e.g., sorting by name, then by age).<br>- Used when the stability of equal elements is important in the sorting process. | - Suitable for cases where the relative order of equal elements doesn’t matter.<br>- Often used when performance is prioritized and stability is not a concern. |
+| **Memory Usage**                | - Some stable sorting algorithms like Merge Sort may use extra memory (O(n)) due to the need for auxiliary space.<br>- Others like Bubble Sort or Insertion Sort are in-place. | - Most unstable sorting algorithms are in-place and use O(1) extra memory (e.g., Quick Sort, Heap Sort). |
+| **Efficiency**                  | - Stable algorithms are often slower and may require additional space (e.g., Merge Sort uses O(n) space). | - Unstable algorithms may be more efficient in terms of space and time complexity for certain types of data (e.g., Quick Sort is typically faster than Merge Sort). |
+| **Limitations**                 | - Typically more memory-intensive, especially if the algorithm is not in-place (e.g., Merge Sort).<br>- Can be slower than unstable algorithms in some cases. | - May not preserve the original order of equal elements, which could be important for certain applications. |
 
----
+    
 
-## 3️⃣ Selection Sort
 
-**Idea**: Repeatedly select the minimum element and place it at the correct position.
 
-```java
-void selectionSort(int[] A) {
-    for (int i = 0; i < A.length - 1; i++) {
-        int minIndex = i;
-        for (int j = i + 1; j < A.length; j++) {
-            if (A[j] < A[minIndex]) {
-                minIndex = j;
-            }
-        }
-        int temp = A[i];
-        A[i] = A[minIndex];
-        A[minIndex] = temp;
-    }
-}
-```
-
-### 🔍 Explanation
-- Comparisons: `n(n - 1)/2`
-- Swaps: `n - 1` (minimum possible)
-- **Stable**: ❌ (due to swapping)
-- **Adaptive**: ❌
-
----
-
-## 4️⃣ Merge Sort (Recursive)
-
-**Idea**: Divide array into halves, sort each half, and merge them.
-
-```java
-void mergeSort(int[] A, int l, int h) {
-    if (l < h) {
-        int mid = (l + h) / 2;
-        mergeSort(A, l, mid);
-        mergeSort(A, mid + 1, h);
-        merge(A, l, mid, h);
-    }
-}
-
-void merge(int[] A, int l, int m, int h) {
-    int[] temp = new int[h - l + 1];
-    int i = l, j = m + 1, k = 0;
-    while (i <= m && j <= h) {
-        temp[k++] = A[i] < A[j] ? A[i++] : A[j++];
-    }
-    while (i <= m) temp[k++] = A[i++];
-    while (j <= h) temp[k++] = A[j++];
-    System.arraycopy(temp, 0, A, l, temp.length);
-}
-```
-
-### 🔍 Explanation
-- Time: O(n log n)
-- Stable: ✅
-- Adaptive: ❌
-- Space: Requires temporary array (O(n))
-
----
-
-## 5️⃣ Quick Sort
-
-**Idea**: Partition array around a pivot, then sort the parts.
-
-```java
-void quickSort(int[] A, int low, int high) {
-    if (low < high) {
-        int pi = partition(A, low, high);
-        quickSort(A, low, pi);
-        quickSort(A, pi + 1, high);
-    }
-}
-
-int partition(int[] A, int low, int high) {
-    int pivot = A[low];
-    int i = low, j = high;
-    while (i < j) {
-        while (i <= high && A[i] <= pivot) i++;
-        while (j >= low && A[j] > pivot) j--;
-        if (i < j) {
-            int temp = A[i]; A[i] = A[j]; A[j] = temp;
-        }
-    }
-    int temp = A[low]; A[low] = A[j]; A[j] = temp;
-    return j;
-}
-```
-
-### 🔍 Explanation
-- Best: O(n log n)
-- Worst: O(n²) if pivot always at edge
-- Stable: ❌
-- Adaptive: ❌
-
-## 6️⃣ Shell Sort
-
-**Idea**: Improves insertion sort by comparing elements at gaps (also called diminishing increment sort).
-
-```java
-void shellSort(int[] A) {
-    int n = A.length;
-    for (int gap = n / 2; gap >= 1; gap /= 2) {
-        for (int i = gap; i < n; i++) {
-            int temp = A[i];
-            int j = i;
-            while (j >= gap && A[j - gap] > temp) {
-                A[j] = A[j - gap];
-                j -= gap;
-            }
-            A[j] = temp;
-        }
-    }
-}
-```
-
-### 🔍 Explanation
-- First sorts elements far apart, then reduces the gap.
-- Final pass is a normal insertion sort.
-- Gap sequence: `n/2, n/4, ..., 1`
-- Time Complexity: Best ~O(n log n), Worst: O(n²)
-- Stable: ❌
-- Adaptive: ❌
-
----
-
-## 7️⃣ Counting Sort
-
-**Idea**: Count occurrences of each element and place them in the correct position.
-
-```java
-void countingSort(int[] A) {
-    int max = Arrays.stream(A).max().getAsInt();
-    int[] count = new int[max + 1];
-
-    for (int value : A) count[value]++;
-
-    int i = 0;
-    for (int j = 0; j < count.length; j++) {
-        while (count[j]-- > 0) A[i++] = j;
-    }
-}
-```
-
-### 🔍 Explanation
-- Works only for **non-negative integers**.
-- Not comparison-based.
-- Space: O(k) where k = max value
-- Time: O(n + k)
-- Stable: ✅ (if implemented with output array)
-
-### 📈 Visual Flow
-
----
-
-## 8️⃣ Bucket Sort (Bin Sort)
-
-**Idea**: Distribute elements into buckets, sort each bucket, then combine.
-
-```java
-void bucketSort(int[] A) {
-    int max = Arrays.stream(A).max().getAsInt();
-    List<List<Integer>> buckets = new ArrayList<>(max + 1);
-
-    for (int i = 0; i <= max; i++) buckets.add(new LinkedList<>());
-
-    for (int value : A) buckets.get(value).add(value);
-
-    int k = 0;
-    for (List<Integer> bucket : buckets) {
-        for (int num : bucket) {
-            A[k++] = num;
-        }
-    }
-}
-```
-
-### 🔍 Explanation
-- Efficient when input is uniformly distributed
-- Space: High due to buckets
-- Time: O(n + k) in average case
-- Stable: ✅
-- Adaptive: ❌
-
----
-
-## 9️⃣ Radix Sort
-
-**Idea**: Sort numbers digit by digit using **stable counting sort** starting from least significant digit (LSD).
-
-```java
-void radixSort(int[] A) {
-    int max = Arrays.stream(A).max().getAsInt();
-    for (int exp = 1; max / exp > 0; exp *= 10)
-        countingSortByDigit(A, exp);
-}
-
-void countingSortByDigit(int[] A, int exp) {
-    int n = A.length;
-    int[] output = new int[n];
-    int[] count = new int[10];
-
-    for (int i = 0; i < n; i++)
-        count[(A[i] / exp) % 10]++;
-
-    for (int i = 1; i < 10; i++)
-        count[i] += count[i - 1];
-
-    for (int i = n - 1; i >= 0; i--) {
-        int index = (A[i] / exp) % 10;
-        output[count[index] - 1] = A[i];
-        count[index]--;
-    }
-
-    System.arraycopy(output, 0, A, 0, n);
-}
-```
-
-### 🔍 Explanation
-- Best for numbers with similar digit lengths
-- Time: O(nk), where k = number of digits
-- Space: O(n + k)
-- Stable: ✅
-
----
-
-## ✅ Final Comparison Table
+## ✅ Comparison Table
 
 | Sort         | Time (Best) | Time (Worst) | Stable | Adaptive | Extra Space |
 |--------------|-------------|---------------|--------|----------|-------------|
